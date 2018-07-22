@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">Rental Costume Management System</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a class="btn btn-lg" th:href="@{/home}">
+                    <span class="glyphicon glyphicon-home"></span> Home
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-lg" th:href="@{/me}">
+                    <span class="glyphicon glyphicon-user"></span> My Page
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-lg" th:href="@{/me/orders}">
+                    <span class="glyphicon glyphicon-list-alt"></span> My Order
+                </a>
+            </li>
+        </ul>
+        <div class="navbar-right">
+            <form class="navbar-form" th:action="@{/logout}" method="post">
+                <button class="btn btn-success" type="submit">Logout &raquo;</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="table-responsive">
+        <h1>Item Detail</h1><br>
+        <table class="table">
+            <tr>
+                <td><h5>Name :</h5></td>
+                <td th:text="${item.name}"></td>
+            </tr>
+            <tr>
+                <td><h5>Gender :</h5></td>
+                <td th:text="${item.gender}"></td>
+            </tr>
+            <tr>
+                <td><h5>Size :</h5></td>
+                <td th:text="${item.size}"></td>
+            </tr>
+            <tr>
+                <td><h5>Color :</h5></td>
+                <td th:text="${item.color}"></td>
+            </tr>
+        </table>
+    </div>
+    <form action="#" th:action="@{/rentals/order}" method="post">
+        <div><input type="hidden" th:name="item_id" th:value="${item.id}"/></div>
+        <div>
+            <button class="btn btn-primary btn-lg">Order &raquo;</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
