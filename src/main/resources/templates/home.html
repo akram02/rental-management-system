@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">Rental Costume Management System</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a class="btn btn-lg" th:href="@{/home}">
+                    <span class="glyphicon glyphicon-home"></span> Home
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-lg" th:href="@{/me}">
+                    <span class="glyphicon glyphicon-user"></span> My Page
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-lg" th:href="@{/me/orders}">
+                    <span class="glyphicon glyphicon-list-alt"></span> My Order
+                </a>
+            </li>
+        </ul>
+        <div class="navbar-right">
+            <form class="navbar-form" th:action="@{/logout}" method="post">
+                <button class="btn btn-success" type="submit">Logout &raquo;</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 sidebar">
+            <form action="/items/" method="get">
+                <ul class="nav">
+                    <h3>Search by</h3><br>
+                    <li class="nav-item">
+                        <h4>Gender</h4>
+                        <input type="radio" name="gender" value="0">&nbspMale&nbsp
+                        <input type="radio" name="gender" value="1">&nbspFemale&nbsp
+                        <input type="radio" name="gender" value="2">&nbspOther&nbsp
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <h4>Size</h4>
+                        <input type="radio" name="size" value="0">&nbspS&nbsp
+                        <input type="radio" name="size" value="1">&nbspM&nbsp
+                        <input type="radio" name="size" value="2">&nbspL&nbsp
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <h4>Color</h4>
+                        <input type="radio" name="color" value="0">&nbspWhite&nbsp
+                        <input type="radio" name="color" value="1">&nbspBlack&nbsp
+                        <input type="radio" name="color" value="2">&nbspRed&nbsp<br>
+                        <input type="radio" name="color" value="3">&nbspBlue&nbsp
+                        <input type="radio" name="color" value="4">&nbspYellow&nbsp
+                    </li>
+                    <br>
+                </ul>
+                <button class="btn btn-primary" type="submit">
+                    &nbspSearch&nbsp<span class="glyphicon glyphicon-search"></span>
+                </button>
+                <button class="btn btn-default" type="reset">Reset</button>
+            </form>
+        </nav>
+        <div class="table-responsive">
+            <h1>Item list</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item:${items}">
+                    <td scope="row" th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.gender}"></td>
+                    <td th:text="${item.size}"></td>
+                    <td th:text="${item.color}"></td>
+                    <td>
+                        <a th:href="@{/items/{id}(id=${item.id})}">
+                            <button class="btn btn-info">Detail &raquo;</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
