@@ -2,6 +2,8 @@
 
 Rental Management System with Spring Boot
 
+![](https://github.com/zaq1tomo/rental-management-system/blob/master/images/image.png)
+
 ## Description
 
 This system has three functions, auth, search, and rental.
